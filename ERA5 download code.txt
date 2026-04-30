@@ -4,9 +4,14 @@ import cdsapi
 dataset = "derived-era5-land-daily-statistics" 
 request = { 
     "variable": [  
-        "10m_v_component_of_wind", 
+        "2m_dewpoint_temperature",
+        "2m_temperature",
+        "volumetric_soil_water_layer_1",
+        "volumetric_soil_water_layer_2"        
+        "10m_u_component_of_wind",
+        "10m_v_component_of_wind",
     ], 
-    "year": [ "2015"], 
+    "year": [ "1965" … "2024" ], 
     "month": [ "1","2","3","4","5","6","7","8","9","10","11","12"], 
     "day": [ 
         "01", "02", "03", 
@@ -24,7 +29,7 @@ request = {
     "daily_statistic": "daily_maximum", 
     "time_zone": "utc+08:00", 
     "frequency": "1_hourly", 
-    "area": [-33.31, 122.51, -33.4, 122.6] 
+    "area": [-33.0, 120, -34, 124] 
 } 
 
 client = cdsapi.Client() 
