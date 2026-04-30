@@ -1,0 +1,5 @@
+RH from TasMax and Dewpoint
+The following formula was applied to compute relative humidity from  
+Relative Humidity =(EXP((17.625*DC)/(243.04+DC))/EXP((17.625*TC)/(243.04+TC)))
+DC: 2m Dewpoint temperature in degrees Celsius
+TC: 2m temperature in degrees Celsius
