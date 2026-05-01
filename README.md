@@ -14,4 +14,5 @@ Process:
 5. We opened these files in Panoply software and extracted the timeseries results for the specific coordinate of interest to excel for further analysis. Not a neccesary step, for those who continue to use the geospatial data, but the following codes are written for excel.
 6. Convert precipitation from m to mm (*1000)
 7. Convert temperature (for both dewpoint and surface air temperature) from Kelvin to Celsius in excel using TK - 273.15 = TC.
-8. Calculate RH from dewpoint and temperature using this formula: 
+8. Calculate RH from dewpoint and temperature using the formula <RH from TasMax and Dewpoint>
+9. Convert windspeed u and v components from m/s to kmph (*3.6)  
