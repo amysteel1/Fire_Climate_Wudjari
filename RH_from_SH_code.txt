@@ -1,0 +1,28 @@
+import pandas as pd
+import metpy.calc as mpcalc
+from metpy.units import units
+
+# Read the Excel file
+df = pd.read_excel('FLIENAME.xlsx')
+
+# Print column names to see what they actually are
+print("Available columns in the DataFrame:")
+print(df.columns.tolist())
+
+# Convert variables to metpy quantities with units
+pressure = df['psl'].values * units.hPa        # Pressure in hectopascals
+temperature = df['tas'].values * units.degC  # Temperature in celsius
+specific_humidity = df['huss'].values          # Specific humidity (dimensionless)
+
+# Calculate relative humidity directly from specific humidity
+relative_humidity = mpcalc.relative_humidity_from_specific_humidity(
+    pressure,
+    temperature,
+    specific_humidity
+)
+
+# Convert to percentage and add to dataframe
+df['relative_humidity'] = relative_humidity.to('percent').magnitude
+
+# Save results to a new Excel file
+df.to_excel('outputFILENAME.xlsx', index=False)
