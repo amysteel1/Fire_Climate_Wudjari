@@ -20,7 +20,7 @@ def weather_soil_threshold_calculator(dfFIREdraft1):
         'TP_mm': (1, 10),          
         'tas': (10, 30),       
         'RH': (0.30, 0.60),            
-        'Wind_kmph': (10, 30),
+        'Wind_kmph': (10, 25),
     }
     
     # Check for soil moisture columns and add the appropriate one
