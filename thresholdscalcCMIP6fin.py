@@ -45,10 +45,14 @@ def weather_soil_threshold_calculator(dfFIREdraft1):
         else:
             print(f"Warning: Column '{var_name}' not found in the data")
     
-    # Combine all masks
-    all_within_thresholds = np.all(masks, axis=0)
-    rows_within_all_thresholds = dfFIREdraft1[all_within_thresholds]
-    
+    # Combine all masks correctly (row-wise AND)
+if len(masks) > 0:
+    all_within_thresholds = pd.concat(masks, axis=1).all(axis=1)
+else:
+    all_within_thresholds = pd.Series([False] * len(dfFIREdraft1))
+
+rows_within_all_thresholds = dfFIREdraft1[all_within_thresholds]
+
     # Calculate summary statistics
     total_rows = len(dfFIREdraft1)
     rows_within_count = len(rows_within_all_thresholds)
