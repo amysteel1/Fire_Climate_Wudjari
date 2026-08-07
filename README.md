@@ -2,11 +2,11 @@
 Data and codes used to investigate fire and cultural burning weather for Wudjari boodja, WA.
 All past and future climate data was downloaded from Copernicus Climate Data Store (CDS), https://cds.climate.copernicus.eu/ this can be done manually or using the API. 
 We have included the API download codes but they will only work if an API user account exists at CDS.
-The files were downloaded into NetGDF and GRIB format and read using Panoply.
-The ongoing use of this data required an excel readable format, so the data was tranposed into CSV. 
-The geospatial files can be flattened to CSV using code, however, we manually opened each in Panoply and then exported each coordinate location to a CSV file, so no code has been included in this folder.
+The files were downloaded into NetCDF and GRIB format and read using Panoply.
+The ongoing use of this data required an excel readable format, so the data was transposed into CSV. 
+The geospatial files can be flattened to CSV using code, however, we manually opened each in Panoply and then exported each coordinate location to a CSV file, so no code has been included in this workflow.
 We used the anaconda software, including python language and spyder python development environment (Python 3.12) to perform this analysis.  
-Process: 
+ Historical climate data process: 
 1. Register and create API login at Copernicus Climate Datastore https://cds.climate.copernicus.eu/
 2. Determine coordinates of interest prior to downloading data
 3. In the python development environment use both ERA5 code <ERA5 download code> updating the coordinates. The size of this request may exceed the host limit and may therefore require it to be run for only one year and one variable at a time.
@@ -15,4 +15,10 @@ Process:
 6. Convert precipitation from m to mm (*1000)
 7. Convert temperature (for both dewpoint and surface air temperature) from Kelvin to Celsius in excel using TK - 273.15 = TC.
 8. Calculate RH from dewpoint and temperature using the formula <RH from TasMax and Dewpoint>
-9. Convert windspeed u and v components from m/s to kmph (*3.6)  
+9. Convert windspeed u and v components from m/s to kmph (*3.6)
+10. Apply the normal distribution code <normal_MRSO> to compute the normal distribution and apply an index to volumetric soil moisture (VSM L1).
+Future climate scenario (CMIP6) data:
+1. Determine top 8 performing CMIP6 models of interest for this location using C. Gallo et al. 2023 performance evaluation DOI: 10.5194/gmd-16-3103-2023
+2. Search CDS for required variables at a daily granularity for each required model and scenarios (SSP126, SSP585) required variables are:(maximum temperature "tasmax", wind speed "sfcWind", precipitation flux "pr", specific humidity "huss", sea level pressure "psl", soil moisture "mrsos" / "mrso if not available).
+3. Either manually download or follow API code  
+
